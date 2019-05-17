@@ -8,5 +8,5 @@ setup(name='coincheck',
       url='https://github.com/QuoineFinancial/coincheck-python',
       install_requires=[
       ],
-      packages=['src.coincheck', ]
+      packages=['coincheck', ]
       )
