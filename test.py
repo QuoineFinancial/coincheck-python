@@ -1,12 +1,24 @@
 from coincheck.coincheck import CoinCheck
 import logging
+import os
 
-# CoinCheck.DEBUG = True
-# CoinCheck.DEBUG_LEVEL = logging.DEBUG
-coinCheck = CoinCheck('ACCESS_KEY', 'API_SECRET')
+EXCHANGE_NAME = 'COINCHECK'
+
+api_key_env_name = f'BALANCE_TRACER_{EXCHANGE_NAME}_ACCESS'
+api_secret_env_name = f'BALANCE_TRACER_{EXCHANGE_NAME}_SECRET'
+
+ACCESS_KEY = os.getenv(api_key_env_name)
+API_SECRET = os.getenv(api_secret_env_name)
+
+assert ACCESS_KEY
+assert API_SECRET
+
+CoinCheck.DEBUG = True
+CoinCheck.DEBUG_LEVEL = logging.DEBUG
+coinCheck = CoinCheck(ACCESS_KEY, API_SECRET)
 
 #Public API
-res = coinCheck.ticker.all()
+#res = coinCheck.ticker.all()
 # res = coinCheck.trade.all()
 # res = coinCheck.order_book.all()
 
@@ -30,9 +42,9 @@ res = coinCheck.ticker.all()
 # params = {'status': 'open'}
 # res = coinCheck.leverage.positions(params);
 
-# res = coinCheck.account.balance(params);
+res = coinCheck.account.balance();
 # res = coinCheck.account.leverage_balance(params);
-# res = coinCheck.account.info(params);
+# res = coinCheck.account.info();
 
 # params = {
 #     'address': '1Gp9MCp7FWqNgaUWdiUiRPjGqNVdqug2hY',
